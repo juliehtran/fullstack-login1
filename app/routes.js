@@ -1,5 +1,5 @@
-import { User } from './models/user.js'
-import { Choice } from './models/choice.js'
+// import { User } from './models/user.js'
+// import { Choice } from './models/choice.js'
 import { questions } from './questions.js'
 
 export { setupRoutes };
