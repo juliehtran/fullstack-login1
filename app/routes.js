@@ -9,9 +9,15 @@ function setupRoutes(app, passport) {
 
   // show the home page (will also have our login links)
   app.get('/', isLoggedIn, (req, res) => {
+    // add a random question to the data that we're sending to EJS
     const randomIndex = Math.floor(Math.random() * questions.length)
-    const question = questions[randomIndex]
-    res.render('index.ejs', question);
+    const data = questions[randomIndex]
+
+    // add the user's previously chosen answers to the data
+    data.chosenAnswers = req.user.choices
+
+    // render index.ejs with the info in data
+    res.render('index.ejs', data);
   });
 
   app.post('/choice', isLoggedIn, (request, response) => {

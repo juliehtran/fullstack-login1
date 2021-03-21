@@ -8,25 +8,41 @@
     <link rel="icon" type="image/png" href="favicon.png" />
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Courgette&display=swap" rel="stylesheet">
 
 <body>
-    <div>
-        <section class="container">
-            <h1>Would You Rather</h1>
+    <section class="container">
+        <div class="row">
+            <div class="col">
+                <h1 class="mt-3">Would You Rather...</h1>
 
-            <h3>Fly a plane or sail a boat</h3>
+                <h3 class="question">
+                    <%= question %>
+                </h3>
 
-            <div>
-                <button class="btn btn-lg btn-primary option">Plane</button>
-                <button class="btn btn-lg btn-primary option">Boat</button>
+                <div class="mb-4">
+                    <button class="btn btn-lg btn-primary option"><%= option1 %></button>
+                    <button class="btn btn-lg btn-primary option"><%= option2 %>?</button>
+                </div>
+                
+                <button class="logout btn btn-secondary btn-lg">Log out</button>
             </div>
+            <div class="col">
+                <% chosenAnswers.forEach((chosenAnswer) => { %>
+                    <div class="card mt-2">
+                        <div class="card-body">
+                            <h6 class="card-subtitle mb-2 text-muted">Would you rather...</h6>
+                          <h5 class="card-title"><%= chosenAnswer.question %>?</h5>
+                          <p class="card-text">You chose: <%= chosenAnswer.choice %></p>
+                        </div>
+                      </div>
+                <% }); %>
+            </div>
+        </div>
+    </section>
 
-            <button class="logout btn btn-secondary btn-lg">Log out</button>
-        </section>
-
-    </div>
     <script src="js/client.js"></script>
 </body>
 
