@@ -15,3 +15,9 @@ function onOptionClicked(event) {
             console.log(response)
         })
 }
+
+document.querySelector('.logout').addEventListener('click', logOut)
+
+function logOut() {
+    fetch('/logout').then(() => window.location.reload())
+}
