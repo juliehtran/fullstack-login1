@@ -25,3 +25,16 @@ document.querySelector('.logout').addEventListener('click', logOut)
 function logOut() {
     fetch('/logout').then(() => window.location.reload())
 }
+
+document.querySelector('.delete-button').addEventListener('click', onDeleteClicked)
+
+function onDeleteClicked(event) {
+    const deleteButton = event.target
+    const answerCard = deleteButton.closest('.answer-card')
+    const id = answerCard.dataset.id
+    fetch('/choice', {
+        method: `DELETE`,
+        body: JSON.stringify({ id: id }),
+        headers: { "Content-Type": `application/json` }
+    }).then(() => window.location.reload())
+}
