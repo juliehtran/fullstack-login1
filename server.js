@@ -2,20 +2,20 @@
 
 // set up ======================================================================
 // get all the tools we need
-const express  = require('express');
+import express from 'express';
 const app      = express();
 const port     = process.env.PORT || 8080;
-// const MongoClient = require('mongodb').MongoClient
-const mongoose = require('mongoose');
-const passport = require('passport');
-const flash    = require('connect-flash');
+import mongoose from 'mongoose';
+import passport from 'passport';
+import flash from 'connect-flash';
 
-const morgan       = require('morgan');
-const cookieParser = require('cookie-parser');
-const session      = require('express-session');
+import morgan from 'morgan';
+import cookieParser from 'cookie-parser';
+import session from 'express-session';
 
-const configDB = require('./config/database');
-const setupRoutes = require('./app/routes')
+import { configDB } from './config/database.js';
+import { setupRoutes } from './app/routes.js';
+import { configPassport } from './config/passport.js';
 
 let db
 
@@ -23,11 +23,10 @@ let db
 mongoose.connect(configDB.url, { useNewUrlParser: true, useUnifiedTopology: true }, (err, database) => {
   if (err) return console.log(err)
   db = database
-  // require('./app/routes.js')(app, passport, db)
   setupRoutes(app, passport, db);
 }); // connect to our database
 
-require('./config/passport')(passport); // pass passport for configuration
+configPassport(passport); // pass passport for configuration
 
 // set up our express application
 app.use(morgan('dev')); // log every request to the console (middleware)

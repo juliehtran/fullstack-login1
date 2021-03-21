@@ -1,4 +1,4 @@
-module.exports = [
+const questions = [
     {
       question: "Tell all of your friends that you don't wipe or sneeze every time someone says your name",
       option1: "Friends",
@@ -15,3 +15,5 @@ module.exports = [
       option2: "Stop time"
     }
 ]
+
+export { questions }

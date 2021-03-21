@@ -26,7 +26,9 @@ function logOut() {
     fetch('/logout').then(() => window.location.reload())
 }
 
-document.querySelector('.delete-button').addEventListener('click', onDeleteClicked)
+document.querySelectorAll('.delete-button').forEach(deleteButton => {
+    deleteButton.addEventListener('click', onDeleteClicked)
+})
 
 function onDeleteClicked(event) {
     const deleteButton = event.target

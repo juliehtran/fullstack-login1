@@ -1,7 +1,8 @@
-const User = require('./models/user')
-const questions = require('./questions')
+import { User } from './models/user.js'
+import { Choice } from './models/choice.js'
+import { questions } from './questions.js'
 
-module.exports = setupRoutes;
+export { setupRoutes };
 
 function setupRoutes(app, passport) {
 
@@ -27,6 +28,13 @@ function setupRoutes(app, passport) {
     // save to the database
     request.user.choices.push(newChoice)
     request.user.save()
+
+    response.json({ success: true })
+  })
+
+  app.delete('/choice', isLoggedIn, async (request, response) => {
+    request.user.choices.id(request.body.id).remove();
+    await request.user.save();
 
     response.json({ success: true })
   })

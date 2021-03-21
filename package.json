@@ -4,6 +4,7 @@
   "scripts": {
     "start": "nodemon server.js"
   },
+  "type": "module",
   "dependencies": {
     "bcrypt-nodejs": "latest",
     "connect-flash": "~0.1.1",

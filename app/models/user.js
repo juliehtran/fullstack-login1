@@ -1,6 +1,7 @@
 // load the things we need
-const mongoose = require('mongoose');
-const bcrypt = require('bcrypt-nodejs');
+import mongoose from 'mongoose';
+import { hashSync, compareSync, genSaltSync } from 'bcrypt-nodejs';
+import { choiceSchema } from './choice.js';
 
 // define the schema for our user model
 const userSchema = mongoose.Schema({
@@ -9,19 +10,21 @@ const userSchema = mongoose.Schema({
         email: String,
         password: String,
     },
-    choices: [{ choice: String, question: String }]
+    choices: [choiceSchema]
 
 });
 
 // generating a hash
 userSchema.methods.generateHash = function (password) {
-    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+    return hashSync(password, genSaltSync(8), null);
 };
 
 // checking if password is valid
 userSchema.methods.validPassword = function (password) {
-    return bcrypt.compareSync(password, this.local.password);
+    return compareSync(password, this.local.password);
 };
 
 // create the model for users and expose it to our app
-module.exports = mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema);
+
+export { User }
