@@ -30,10 +30,10 @@ mongoose.connect(configDB.url, { useNewUrlParser: true, useUnifiedTopology: true
 require('./config/passport')(passport); // pass passport for configuration
 
 // set up our express application
-app.use(morgan('dev')); // log every request to the console
+app.use(morgan('dev')); // log every request to the console (middleware)
 app.use(cookieParser()); // read cookies (needed for auth)
-app.use(express.json()); // get information from html forms
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ extended: true })); //get information from fetches
+app.use(express.urlencoded({ extended: true })); // get information from html forms
 app.use(express.static('public'))
 
 app.set('view engine', 'ejs'); // set up ejs for templating
