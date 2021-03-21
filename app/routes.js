@@ -1,4 +1,5 @@
 const User = require('./models/user')
+const questions = require('./questions')
 
 module.exports = setupRoutes;
 
@@ -8,7 +9,9 @@ function setupRoutes(app, passport) {
 
   // show the home page (will also have our login links)
   app.get('/', isLoggedIn, (req, res) => {
-    res.render('index.ejs');
+    const randomIndex = Math.floor(Math.random() * questions.length)
+    const question = questions[randomIndex]
+    res.render('index.ejs', question);
   });
 
   app.post('/choice', isLoggedIn, (request, response) => {
