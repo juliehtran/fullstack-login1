@@ -12,10 +12,14 @@ function setupRoutes(app, passport) {
   });
 
   app.post('/choice', isLoggedIn, (request, response) => {
-    console.log(request.body)
-    request.body // "Plane" or "Boat"
+    console.log(request.body) // { choice: "Plane" or "Boat", question: "blah blah" }
+    const newChoice = { question: request.body.question, choice: request.body.choice }
+
     // save to the database
-    // give new question
+    request.user.choices.push(newChoice)
+    request.user.save()
+
+    response.json({ success: true })
   })
 
   // LOGOUT ==============================
