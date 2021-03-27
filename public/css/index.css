@@ -1,0 +1,22 @@
+body {
+    background-image: url('./home-bg.png');
+    background-color: #FFE4C9;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+}
+
+.scrollable {
+    height: 100vh;
+    overflow: auto;
+}
+
+h1{
+    color:#FF5757;
+}
+
+#buttons{
+    background-color: #FF5757;  
+    outline: none;
+    }

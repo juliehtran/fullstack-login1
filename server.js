@@ -13,14 +13,16 @@ import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
 
-import { configDB } from './config/database.js';
 import { setupRoutes } from './app/routes.js';
 import { configPassport } from './config/passport.js';
 
 let db
 
 // configuration ===============================================================
-mongoose.connect(configDB.url, { useNewUrlParser: true, useUnifiedTopology: true }, (err, database) => {
+if (!process.env.DATABASE_URL) {
+  throw "Please set DATABASE_URL in the environment."
+}
+mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true }, (err, database) => {
   if (err) return console.log(err)
   db = database
   setupRoutes(app, passport, db);
