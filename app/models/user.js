@@ -1,7 +1,8 @@
 // load the things we need
 import mongoose from 'mongoose';
-import { hashSync, compareSync, genSaltSync } from 'bcrypt-nodejs';
+import bcryptjs from 'bcryptjs';
 import { choiceSchema } from './choice.js';
+const { hashSync, compareSync, genSaltSync } = bcryptjs;
 
 // define the schema for our user model
 const userSchema = mongoose.Schema({
